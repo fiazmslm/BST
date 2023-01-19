@@ -20,6 +20,8 @@ public:
     // Check leaf.
     bool isLeaf(BST*,int);
 
+    // Find siblings.
+    INT findSibling(BST*,int);
 };
 
 // Default constructor definition.
@@ -36,11 +38,11 @@ BST::BST(int value)
 }
 
 BST* BST::Insert(BST* root,int value){
-    BST* newNode = new BST(value);
+    BST* newroot = new BST(value);
 
     // First case for root.
     if(!root){
-        return newNode;
+        return newroot;
     }
 
     if(value>root->data){
@@ -52,7 +54,7 @@ BST* BST::Insert(BST* root,int value){
         root->left = Insert(root->left, value);
     }
  
-    // Return 'root' node, after insertion.
+    // Return 'root' root, after insertion.
     return root;
 }
 
@@ -99,9 +101,9 @@ int main(){
     while (n<6) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
-        cout << "Enter 2 To serach the node \n";
-        cout << "Enter 3 To find the no. of internal nodes \n";
-        cout << "Enter 4 To find the no. of external nodes \n";
+        cout << "Enter 2 To serach the root \n";
+        cout << "Enter 3 To find the no. of internal roots \n";
+        cout << "Enter 4 To find the no. of external roots \n";
         cout << "Enter 5 To find the no. of internal links \n";
         cout << "Enter 6 To find the no. of external links \n";
         cout << "Enter 0 To terminate the program \n";
@@ -126,10 +128,13 @@ int main(){
 
                 binaryTree.Search(root,num);
                 if(binaryTree.isLeaf(root,num)){
-                    cout << "Yes, it is a leaf node \n";
+                    cout << "Yes, it is a leaf root \n";
                 }else{
-                    cout << "No, it is not a leaf node \n";
+                    cout << "No, it is not a leaf root \n";
                 }
+
+                binaryTree.findSiblings(root,num);
+
             break;			 
             
             case 3:
