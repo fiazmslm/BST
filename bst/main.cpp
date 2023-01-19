@@ -20,6 +20,9 @@ public:
     // Check leaf.
     bool isLeaf(BST*,int);
 
+    // Check leaf.
+    int leftChild(BST*,int);
+
 };
 
 // Default constructor definition.
@@ -86,6 +89,20 @@ bool BST::isLeaf(BST* root,int key) {
    return false;
 }
 
+int BST::leftChild(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            if(root->left !=NULL)
+                return root->left->data;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   return -1;
+}
+
 int main(){
     int data[] = {10,8,12,4,11,15,6,17,7,9,16};
     cout<<"Data\n----------------------\n";
@@ -95,7 +112,7 @@ int main(){
     }
 
     BST binaryTree, *root = NULL;
-    int n=0;
+    int n=0,leftChild;
     while (n<6) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
@@ -130,6 +147,12 @@ int main(){
                 }else{
                     cout << "No, it is not a leaf node \n";
                 }
+
+                leftChild=binaryTree.leftChild(root,num);
+                if(leftChild!=-1){
+                    cout << leftChild <<" is the left child of "<<num<<endl;
+                }
+
             break;			 
             
             case 3:
