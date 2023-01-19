@@ -51,15 +51,54 @@ BST* BST::Insert(BST* root,int value){
 
 int main(){
     BST binaryTree, *root = NULL;
-    root = binaryTree.Insert(root, 10);
-    binaryTree.Insert(root, 8);
-    binaryTree.Insert(root, 12);
-    binaryTree.Insert(root, 4);
-    binaryTree.Insert(root, 11);
-    binaryTree.Insert(root, 15);
-    binaryTree.Insert(root, 6);
-    binaryTree.Insert(root, 17);
-    binaryTree.Insert(root, 7);
-    binaryTree.Insert(root, 9);
-    binaryTree.Insert(root, 16);
+    int n=0;
+    while (n<6) {
+        cout << "\nEnter Your Choice \n";
+        cout << "Enter 1 To create BST \n";
+        cout << "Enter 2 To serach the node \n";
+        cout << "Enter 3 To find the no. of internal nodes \n";
+        cout << "Enter 4 To find the no. of external nodes \n";
+        cout << "Enter 5 To find the no. of internal links \n";
+        cout << "Enter 6 To find the no. of external links \n";
+        cout << "Enter 0 To terminate the program \n";
+        cin>>n;
+        
+        switch (n) {
+            case 1:	  
+            cout << "BST is being created... \n";
+            root = binaryTree.Insert(root, 10);
+            binaryTree.Insert(root, 8);
+            binaryTree.Insert(root, 12);
+            binaryTree.Insert(root, 4);
+            binaryTree.Insert(root, 11);
+            binaryTree.Insert(root, 15);
+            binaryTree.Insert(root, 6);
+            binaryTree.Insert(root, 17);
+            binaryTree.Insert(root, 7);
+            binaryTree.Insert(root, 9);
+            binaryTree.Insert(root, 16);
+            cout << "Done. \n";
+            break;
+            
+            case 2:
+            break;			 
+            
+            case 3:
+            break;
+
+            case 4:
+            break;	
+
+            case 5:
+            break;	
+
+            case 6:
+            break;			 
+            
+            default :
+            break;
+        }
+    }
+
+    return 0;
 }
