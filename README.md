@@ -1,5 +1,5 @@
-#### DS
-### BST
+### DS
+#### BST
 
 Here I will write code for the BST in C++ and GOLANG
 
@@ -20,7 +20,7 @@ Following functions I will write here,
 
 Then I will write a driver code in main and test.
 
-#### Setup
+### Setup
 
 ```bash
 sudo apt-get install g++
@@ -30,7 +30,7 @@ sudo apt-get install g++
 which g++
 ```
 
-## Start
+### Start
 
 To run the code in the terminal
 
