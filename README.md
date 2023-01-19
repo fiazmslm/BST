@@ -5,6 +5,7 @@ Here I will write code for the BST in C++ and GOLANG
 
 Following functions I will write here,
 
+    insert()
     search()
     findSibling()
     findParent()
@@ -14,7 +15,6 @@ Following functions I will write here,
     getRight()
     setRight()
     isLeaf()
-    insert()
     getLeftChild()
     getRightChild()
 
