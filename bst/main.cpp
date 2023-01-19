@@ -17,6 +17,9 @@ public:
     // Search function.
     void Search(BST*,int);
 
+    // Check leaf.
+    bool isLeaf(BST*,int);
+
 };
 
 // Default constructor definition.
@@ -56,7 +59,7 @@ BST* BST::Insert(BST* root,int value){
 void BST::Search(BST* root,int key) {
     while(root != NULL) {
         if(root->data == key) {
-            cout<<"\nyes "<<key<<"is found"<<endl;
+            cout<<"\nyes "<<key<<" is found"<<endl;
             return;
         } 
         else if(root->data > key)
@@ -64,8 +67,23 @@ void BST::Search(BST* root,int key) {
         else
             root = root->right;
     }
-   cout<<"\nNo "<<key<<"is found"<<endl;
+   cout<<"\nNo "<<key<<" is found"<<endl;
    return;
+}
+
+bool BST::isLeaf(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            if(root->left == NULL && root->right == NULL)
+                return true;
+            return false;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   return false;
 }
 
 int main(){
@@ -107,6 +125,11 @@ int main(){
                 cin>>num;
 
                 binaryTree.Search(root,num);
+                if(binaryTree.isLeaf(root,num)){
+                    cout << "Yes, it is a leaf node \n";
+                }else{
+                    cout << "No, it is not a leaf node \n";
+                }
             break;			 
             
             case 3:
