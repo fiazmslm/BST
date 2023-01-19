@@ -13,6 +13,10 @@ public:
 
     // Insert function.
     BST* Insert(BST*, int);
+
+    // Search function.
+    void Search(BST*,int);
+
 };
 
 // Default constructor definition.
@@ -49,11 +53,33 @@ BST* BST::Insert(BST* root,int value){
     return root;
 }
 
+void BST::Search(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            cout<<"\nyes "<<key<<"is found"<<endl;
+            return;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   cout<<"\nNo "<<key<<"is found"<<endl;
+   return;
+}
+
 int main(){
+    int data[] = {10,8,12,4,11,15,6,17,7,9,16};
+    cout<<"Data\n----------------------\n";
+    int dataLength = sizeof(data)/ sizeof(int);
+    for(int i=0;i<dataLength;i++){
+        cout<<data[i]<<" ";
+    }
+
     BST binaryTree, *root = NULL;
     int n=0;
     while (n<6) {
-        cout << "\nEnter Your Choice \n";
+        cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
         cout << "Enter 2 To serach the node \n";
         cout << "Enter 3 To find the no. of internal nodes \n";
@@ -65,22 +91,22 @@ int main(){
         
         switch (n) {
             case 1:	  
-            cout << "BST is being created... \n";
-            root = binaryTree.Insert(root, 10);
-            binaryTree.Insert(root, 8);
-            binaryTree.Insert(root, 12);
-            binaryTree.Insert(root, 4);
-            binaryTree.Insert(root, 11);
-            binaryTree.Insert(root, 15);
-            binaryTree.Insert(root, 6);
-            binaryTree.Insert(root, 17);
-            binaryTree.Insert(root, 7);
-            binaryTree.Insert(root, 9);
-            binaryTree.Insert(root, 16);
-            cout << "Done. \n";
+                cout << "BST is being created... \n";
+
+                root = binaryTree.Insert(root, data[0]);
+                for(int i=1;i<dataLength;i++){
+                    binaryTree.Insert(root, data[i]);
+                }
+
+                cout << "Done. \n";
             break;
             
             case 2:
+                int num;
+                cout << "Enter the number you want to search in BST \n";
+                cin>>num;
+
+                binaryTree.Search(root,num);
             break;			 
             
             case 3:
