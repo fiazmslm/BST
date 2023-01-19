@@ -17,11 +17,17 @@ public:
     // Search function.
     void Search(BST*,int);
 
-    // Check leaf.
+    // Check leaf function.
     bool isLeaf(BST*,int);
 
-    // Check leaf.
-    int leftChild(BST*,int);
+    // Get left child function.
+    int getLeftChild(BST*,int);
+
+    // Get right child function.
+    int getRightChild(BST*,int);
+
+    // Get sibling function.
+    int getSibling(BST*, int);
 
 };
 
@@ -89,11 +95,12 @@ bool BST::isLeaf(BST* root,int key) {
    return false;
 }
 
-int BST::leftChild(BST* root,int key) {
+int BST::getLeftChild(BST* root,int key) {
     while(root != NULL) {
         if(root->data == key) {
             if(root->left !=NULL)
                 return root->left->data;
+            return -1;
         } 
         else if(root->data > key)
             root = root->left;
@@ -102,6 +109,49 @@ int BST::leftChild(BST* root,int key) {
     }
    return -1;
 }
+
+int BST::getRightChild(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            if(root->right !=NULL)
+                return root->right->data;
+            return -1;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   return -1;
+}
+
+
+int BST::getSibling(BST* root, int key) 
+{
+    if (root == NULL || root->data == key) 
+    {
+      return -1;
+    }
+
+    if (root->left != NULL && root->left->data == key) 
+    {
+        if (root->right!=NULL)
+            return root->right->data;
+    }
+    
+    if (root->right != NULL && root->right->data == key) 
+    {
+      if (root->left!=NULL)
+            return root->left->data;
+    }
+
+    int temp = getSibling(root->left, key);
+    return temp;
+
+    temp = getSibling(root->right, key);
+    return temp;
+}
+
 
 int main(){
     int data[] = {10,8,12,4,11,15,6,17,7,9,16};
@@ -112,7 +162,7 @@ int main(){
     }
 
     BST binaryTree, *root = NULL;
-    int n=0,leftChild;
+    int n=0,sibling,leftChild,rightChild;
     while (n<6) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
@@ -148,9 +198,19 @@ int main(){
                     cout << "No, it is not a leaf node \n";
                 }
 
-                leftChild=binaryTree.leftChild(root,num);
+                sibling = binaryTree.getSibling(root,num);
+                if(sibling!=-1){
+                     cout <<"The sibling of "<<num<<" is "<<sibling<<endl;
+                }
+
+                leftChild=binaryTree.getLeftChild(root,num);
                 if(leftChild!=-1){
                     cout << leftChild <<" is the left child of "<<num<<endl;
+                }
+
+                rightChild=binaryTree.getRightChild(root,num);
+                if(rightChild!=-1){
+                    cout << rightChild <<" is the right child of "<<num<<endl;
                 }
 
             break;			 
