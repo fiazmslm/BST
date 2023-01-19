@@ -1,4 +1,5 @@
-#### BST
+#### DS
+### BST
 
 Here I will write code for the BST in C++ and GOLANG
 
