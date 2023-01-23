@@ -1,3 +1,8 @@
+// Checkout this assigment solution on 
+// my github whose link in avalilabe bellow
+// https://github.com/fiazmslm/ds
+// JazakAllah!
+
 #include <iostream>
 using namespace std;
 
@@ -17,8 +22,26 @@ public:
     // Search function.
     void Search(BST*,int);
 
-    // Check leaf.
+    // Check leaf function.
     bool isLeaf(BST*,int);
+
+    // Get left child function.
+    int getLeftChild(BST*,int);
+
+    // Get right child function.
+    int getRightChild(BST*,int);
+
+    // Get sibling function.
+    int getSibling(BST*, int);
+
+    // parent of a node.
+    int getParent(BST*,int);
+
+    // Get total internal nodes.
+    int internalNodes(BST*);
+
+    // Get total external nodes.
+    int externalNodes(BST*);
 
 };
 
@@ -61,8 +84,7 @@ void BST::Search(BST* root,int key) {
         if(root->data == key) {
             cout<<"\nyes "<<key<<" is found"<<endl;
             return;
-        } 
-        else if(root->data > key)
+        }else if(root->data > key)
             root = root->left;
         else
             root = root->right;
@@ -86,6 +108,128 @@ bool BST::isLeaf(BST* root,int key) {
    return false;
 }
 
+int BST::getLeftChild(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            if(root->left !=NULL)
+                return root->left->data;
+            return -1;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   return -1;
+}
+
+int BST::getRightChild(BST* root,int key) {
+    while(root != NULL) {
+        if(root->data == key) {
+            if(root->right !=NULL)
+                return root->right->data;
+            return -1;
+        } 
+        else if(root->data > key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+   return -1;
+}
+
+
+int BST::getSibling(BST* root, int key) 
+{
+    if (root == NULL || root->data == key) 
+    {
+      return -1;
+    }
+
+    if (root->left != NULL && root->left->data == key) 
+    {
+        if (root->right!=NULL)
+            return root->right->data;
+    }
+    
+    if (root->right != NULL && root->right->data == key) 
+    {
+      if (root->left!=NULL)
+            return root->left->data;
+    }
+
+    int temp = getSibling(root->left, key);
+    return temp;
+
+    temp = getSibling(root->right, key);
+    return temp;
+}
+
+bool isPrime(int n)
+{
+	int i;
+	bool prime=true;
+	
+	for(i=2;i<(n/2);i++)
+	{
+		if(n%i==0)
+		{
+			prime=false;
+			break;
+		}
+	}
+	return prime;
+}
+
+bool isEven(int n)
+{
+    if( n%2 == 0)
+        return true;
+
+    return false;
+}
+
+int BST::getParent(BST* root, int value)
+{
+   if(root->left == NULL && root->right == NULL)
+    return -1;
+
+   if(root->left && root->left->data == value)
+    return root->data;
+
+   if(root->right && root->right->data == value)
+    return root->data;
+
+   if(root->left && root->data > value)
+    return getParent(root->left,value);
+
+   if(root->right && root->data < value)
+    return getParent(root->right,value);
+
+    return -1;
+}
+
+int BST::internalNodes(BST *root)
+{
+    if (root == NULL || (root->left == NULL &&
+                         root->right == NULL))
+        return 0;
+ 
+    return 1 + internalNodes(root->left) +
+               internalNodes(root->right);
+}
+
+int BST::externalNodes(BST* root) 
+{ 
+    if(root == NULL)     
+        return 0; 
+    if(root->left == NULL && root->right == NULL) 
+        return 1;         
+    else
+        return externalNodes(root->left)+ 
+            externalNodes(root->right); 
+} 
+
 int main(){
     int data[] = {10,8,12,4,11,15,6,17,7,9,16};
     cout<<"Data\n----------------------\n";
@@ -95,8 +239,8 @@ int main(){
     }
 
     BST binaryTree, *root = NULL;
-    int n=0;
-    while (n<6) {
+    int n=1,sibling,parent,leftChild,rightChild;
+    while (n<6 && n>0) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
         cout << "Enter 2 To serach the node \n";
@@ -130,18 +274,63 @@ int main(){
                 }else{
                     cout << "No, it is not a leaf node \n";
                 }
+
+                sibling = binaryTree.getSibling(root,num);
+                if(sibling!=-1){
+                     cout <<"The sibling of "<<num<<" is "<<sibling<<endl;
+                }else{
+                    cout <<"There is no sibling of "<<num<<endl;
+                }
+
+                parent = binaryTree.getParent(root,num);
+                if(parent!=-1){
+                     cout <<parent<<" is the parent of "<<num<<endl;
+                }else{
+                    cout <<"There is no parent of "<<num<<" as its a root node"<<endl;
+                }
+
+                leftChild=binaryTree.getLeftChild(root,num);
+                if(leftChild!=-1){
+                    cout << leftChild <<" is the left child of "<<num<<endl;
+                }else{
+                    cout <<"There is no left child of "<<num<<endl;
+                }
+
+                rightChild=binaryTree.getRightChild(root,num);
+                if(rightChild!=-1){
+                    cout << rightChild <<" is the right child of "<<num<<endl;
+                } else{
+                    cout <<"There is no right child of "<<num<<endl;
+                }
+
+                if(isPrime(num)){
+                    cout<<num<<" is a prime number"<<endl;
+                }else{
+                     cout<<num<<" is not a prime number"<<endl;
+                }
+
+                if( isEven(num)){
+                    cout<<num<<" is a even number"<<endl;
+                }else{
+                     cout<<num<<" is a odd number"<<endl;
+                }
+
             break;			 
             
             case 3:
+            cout<<"Total internal nodes = "<<binaryTree.internalNodes(root);
             break;
 
             case 4:
+             cout<<"Total external nodes = "<<binaryTree.externalNodes(root);
             break;	
 
             case 5:
+             cout<<"Total internal links = "<<binaryTree.internalNodes(root)-1;
             break;	
 
             case 6:
+             cout<<"Total external nodes = "<<binaryTree.externalNodes(root);
             break;			 
             
             default :
