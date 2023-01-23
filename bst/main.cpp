@@ -227,16 +227,22 @@ int main(){
                 sibling = binaryTree.getSibling(root,num);
                 if(sibling!=-1){
                      cout <<"The sibling of "<<num<<" is "<<sibling<<endl;
+                }else{
+                    cout <<"There is no sibling of "<<num<<endl;
                 }
 
                 leftChild=binaryTree.getLeftChild(root,num);
                 if(leftChild!=-1){
                     cout << leftChild <<" is the left child of "<<num<<endl;
+                }else{
+                    cout <<"There is no left child of "<<num<<endl;
                 }
 
                 rightChild=binaryTree.getRightChild(root,num);
                 if(rightChild!=-1){
                     cout << rightChild <<" is the right child of "<<num<<endl;
+                } else{
+                    cout <<"There is no right child of "<<num<<endl;
                 }
 
             break;			 
