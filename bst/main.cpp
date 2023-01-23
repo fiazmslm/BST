@@ -231,7 +231,7 @@ int BST::externalNodes(BST* root)
 } 
 
 int main(){
-    int data[] = {10,8,12,4,11,15,6,17,7,9,16};
+    int data[] = {11,6,15,4,8,13,19,16};
     cout<<"Data\n----------------------\n";
     int dataLength = sizeof(data)/ sizeof(int);
     for(int i=0;i<dataLength;i++){
