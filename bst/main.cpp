@@ -1,3 +1,8 @@
+// Checkout this assigment solution on 
+// my github whose link in avalilabe bellow
+// https://github.com/fiazmslm/ds
+// JazakAllah!
+
 #include <iostream>
 using namespace std;
 
@@ -160,6 +165,30 @@ int BST::getSibling(BST* root, int key)
     return temp;
 }
 
+bool isPrime(int n)
+{
+	int i;
+	bool prime=true;
+	
+	for(i=2;i<(n/2);i++)
+	{
+		if(n%i==0)
+		{
+			prime=false;
+			break;
+		}
+	}
+	return prime;
+}
+
+bool isEven(int n)
+{
+    if( n%2 == 0)
+        return true;
+
+    return false;
+}
+
 int BST::getParent(BST* root, int value)
 {
    if(root->left == NULL && root->right == NULL)
@@ -210,8 +239,8 @@ int main(){
     }
 
     BST binaryTree, *root = NULL;
-    int n=0,sibling,parent,leftChild,rightChild;
-    while (n<6) {
+    int n=1,sibling,parent,leftChild,rightChild;
+    while (n<6 && n>0) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
         cout << "Enter 2 To serach the node \n";
@@ -272,6 +301,18 @@ int main(){
                     cout << rightChild <<" is the right child of "<<num<<endl;
                 } else{
                     cout <<"There is no right child of "<<num<<endl;
+                }
+
+                if(isPrime(num)){
+                    cout<<num<<" is a prime number"<<endl;
+                }else{
+                     cout<<num<<" is not a prime number"<<endl;
+                }
+
+                if( isEven(num)){
+                    cout<<num<<" is a even number"<<endl;
+                }else{
+                     cout<<num<<" is a odd number"<<endl;
                 }
 
             break;			 
