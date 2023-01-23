@@ -29,6 +29,9 @@ public:
     // Get sibling function.
     int getSibling(BST*, int);
 
+    // Get total internal nodes
+    int internalNodes(BST*);
+
 };
 
 // Default constructor definition.
@@ -152,6 +155,15 @@ int BST::getSibling(BST* root, int key)
     return temp;
 }
 
+int BST::internalNodes(BST *root)
+{
+    if (root == NULL || (root->left == NULL &&
+                         root->right == NULL))
+        return 0;
+ 
+    return 1 + internalNodes(root->left) +
+               internalNodes(root->right);
+}
 
 int main(){
     int data[] = {10,8,12,4,11,15,6,17,7,9,16};
@@ -216,6 +228,7 @@ int main(){
             break;			 
             
             case 3:
+            cout<<"Total internal nodes = "<<binaryTree.internalNodes(root);
             break;
 
             case 4:
