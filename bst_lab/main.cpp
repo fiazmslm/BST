@@ -44,6 +44,7 @@ public:
             }
         }
         cout<<endl;
+        top = NULL;
     }
 
 };
@@ -67,6 +68,8 @@ public:
     // Pre order traverse.
     void Preorder(BST*,Stack* );
 
+    // Pre order traverse.
+    void Postorder(BST*,Stack* );
 };
 
 // Default constructor definition.
@@ -119,6 +122,14 @@ void BST::Preorder(BST* root,Stack* s ){
     }
 }
 
+void BST::Postorder(BST* root,Stack* s ){
+    if (root != NULL) {
+        Postorder(root->left,s);
+        Postorder(root->right,s);
+        s->push(root->data);
+    }
+}
+
 int main(){
     int data[] = {11,6,15,4,8,13,19,16};
     cout<<"Data\n----------------------\n";
@@ -144,6 +155,10 @@ int main(){
 
     binaryTree.Preorder(root,&s);
     cout<<"Reverse order of preorder traversal: "<<endl;
+    s.display();
+
+    binaryTree.Postorder(root,&s);
+    cout<<"Reverse order of postorder traversal: "<<endl;
     s.display();
 
     return 0;
