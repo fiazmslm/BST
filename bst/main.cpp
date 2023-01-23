@@ -29,6 +29,9 @@ public:
     // Get sibling function.
     int getSibling(BST*, int);
 
+    // parent of a node.
+    int getParent(BST*,int);
+
     // Get total internal nodes.
     int internalNodes(BST*);
 
@@ -76,8 +79,7 @@ void BST::Search(BST* root,int key) {
         if(root->data == key) {
             cout<<"\nyes "<<key<<" is found"<<endl;
             return;
-        } 
-        else if(root->data > key)
+        }else if(root->data > key)
             root = root->left;
         else
             root = root->right;
@@ -158,6 +160,26 @@ int BST::getSibling(BST* root, int key)
     return temp;
 }
 
+int BST::getParent(BST* root, int value)
+{
+   if(root->left == NULL && root->right == NULL)
+    return -1;
+
+   if(root->left && root->left->data == value)
+    return root->data;
+
+   if(root->right && root->right->data == value)
+    return root->data;
+
+   if(root->left && root->data > value)
+    return getParent(root->left,value);
+
+   if(root->right && root->data < value)
+    return getParent(root->right,value);
+
+    return -1;
+}
+
 int BST::internalNodes(BST *root)
 {
     if (root == NULL || (root->left == NULL &&
@@ -188,7 +210,7 @@ int main(){
     }
 
     BST binaryTree, *root = NULL;
-    int n=0,sibling,leftChild,rightChild;
+    int n=0,sibling,parent,leftChild,rightChild;
     while (n<6) {
         cout << "\n\nEnter Your Choice \n";
         cout << "Enter 1 To create BST \n";
@@ -229,6 +251,13 @@ int main(){
                      cout <<"The sibling of "<<num<<" is "<<sibling<<endl;
                 }else{
                     cout <<"There is no sibling of "<<num<<endl;
+                }
+
+                parent = binaryTree.getParent(root,num);
+                if(parent!=-1){
+                     cout <<parent<<" is the parent of "<<num<<endl;
+                }else{
+                    cout <<"There is no parent of "<<num<<" as its a root node"<<endl;
                 }
 
                 leftChild=binaryTree.getLeftChild(root,num);
