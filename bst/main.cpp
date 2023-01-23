@@ -29,8 +29,11 @@ public:
     // Get sibling function.
     int getSibling(BST*, int);
 
-    // Get total internal nodes
+    // Get total internal nodes.
     int internalNodes(BST*);
+
+    // Get total external nodes.
+    int externalNodes(BST*);
 
 };
 
@@ -165,6 +168,17 @@ int BST::internalNodes(BST *root)
                internalNodes(root->right);
 }
 
+int BST::externalNodes(BST* root) 
+{ 
+    if(root == NULL)     
+        return 0; 
+    if(root->left == NULL && root->right == NULL) 
+        return 1;         
+    else
+        return externalNodes(root->left)+ 
+            externalNodes(root->right); 
+} 
+
 int main(){
     int data[] = {10,8,12,4,11,15,6,17,7,9,16};
     cout<<"Data\n----------------------\n";
@@ -232,12 +246,15 @@ int main(){
             break;
 
             case 4:
+             cout<<"Total external nodes = "<<binaryTree.externalNodes(root);
             break;	
 
             case 5:
+             cout<<"Total internal links = "<<binaryTree.internalNodes(root)-1;
             break;	
 
             case 6:
+             cout<<"Total external nodes = "<<binaryTree.externalNodes(root);
             break;			 
             
             default :
