@@ -5,18 +5,18 @@ Here I will write code for the BST in C++ and GOLANG
 
 Following functions I will write here,
 
-    insert()
-    search()
-    findSibling()
-    findParent()
-    isPrimeEvenOdd()
-    getLeft()
-    setLeft()
-    getRight()
-    setRight()
-    isLeaf()
-    getLeftChild()
-    getRightChild()
+    Insert()
+    Search()
+    FindSibling()
+    FindParent()
+    IsPrimeEvenOdd()
+    GetLeft()
+    GetLeft()
+    GetRight()
+    SetRight()
+    IsLeaf()
+    GetLeftChild()
+    GetRightChild()
 
 Then I will write a driver code in main and test.
 
